@@ -3,41 +3,55 @@ package ru.netology;
 import org.junit.jupiter.api.Test;
 import org.testng.Assert;
 
-import static org.testng.Assert.*;
-
 public class CashbackHackServiceTest {
-    CashbackHackService service = new CashbackHackService();
 
     @Test
-    public void shouldCalculateIfAmountCorrect() {
-        int amount = 5700;
-        int actual = service.remain(amount);
-        int expected = 300;
-        assertEquals(actual, expected);
+    public void shouldMakeDecreaseAmount() {
+        CashbackHackService cash = new CashbackHackService();
+
+        int actual = cash.remain(999);
+        int expected = 1;
+
+        Assert.assertEquals(actual, expected);
     }
 
     @Test
-    public void shouldCalculateIfAmountZero() {
-        int amount = 0;
-        int actual = service.remain(amount);
-        int expected = 1000;
-        assertEquals(actual, expected);
+    public void shouldMakeIncreaseAmount() {
+        CashbackHackService cash = new CashbackHackService();
+
+        int actual = cash.remain(1_001);
+        int expected = 999;
+
+        Assert.assertEquals(actual, expected);
     }
 
     @Test
-    public void shouldCalculateIfAmount1000() {
-        int amount = 1000;
-        int actual = service.remain(amount);
+    public void shouldMakeAmountEqualSumOfCashback() {
+        CashbackHackService cash = new CashbackHackService();
+
+        int actual = cash.remain(1_000);
         int expected = 0;
-        assertEquals(actual, expected);
+
+        Assert.assertEquals(actual, expected);
     }
 
     @Test
-    public void shouldCalculateIfAmountIncorrect() {
-        int amount = -50000;
-        int actual = service.remain(amount);
-        int expected = 0;
-        assertEquals(actual, expected);
+    public void shouldMakeZeroAmount() {
+        CashbackHackService cash = new CashbackHackService();
+
+        int actual = cash.remain(0);
+        int expected = 1_000;
+
+        Assert.assertEquals(actual, expected);
     }
 
+    @Test
+    public void shouldMakeAmount() {
+        CashbackHackService cash = new CashbackHackService();
+
+        int actual = cash.remain(900);
+        int expected = 100;
+
+        Assert.assertEquals(actual, expected);
+    }
 }
